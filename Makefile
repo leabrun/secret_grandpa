@@ -1,4 +1,4 @@
 run:
-	uvicorn src.app.main:app --reload
+	uvicorn src.web.main:app --reload
 lint:
 	flake8 src
