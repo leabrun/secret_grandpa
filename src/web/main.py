@@ -19,7 +19,7 @@ async def home_page(request: Request, db: AsyncSession = Depends(get_db)):
     template = "home.html"
     context = {"request": request}
 
-    res = await db.execute(text("SELECT title FROM teams"))
+    res = await db.execute(text("SELECT title, id FROM teams"))
     teams = res.fetchall()
 
     context["teams"] = teams
@@ -55,3 +55,21 @@ async def join_team(team_number: str = Form(...),
     # some
 
     return RedirectResponse("/", status_code=303)
+
+
+@app.get("/team/{id}", response_class=HTMLResponse)
+async def team_page(request: Request, id: int, db: AsyncSession = Depends(get_db)):
+    template = "team.html"
+    context = {"request": request}
+
+    res = await db.execute(text(f"SELECT title FROM teams WHERE id={id}"))
+    team = res.first()
+
+    if not team:
+        return HTMLResponse(content="Team not found", status_code=404)
+    
+    context["team"] = team
+    
+    return templates.TemplateResponse(
+        template, context
+    )

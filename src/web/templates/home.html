@@ -26,7 +26,7 @@
 
         <div class="teams">
             {% for team in teams %}
-                <div class="team">{{ team.title }}</div>
+                <div class="team"><a href="/team/{{ team.id }}">{{ team.title }}</a></div>
             {% endfor %}
         </div>
     </div>
