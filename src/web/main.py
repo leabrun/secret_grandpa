@@ -4,9 +4,10 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
+import uvicorn
 
-from .database.core import get_db
-from .database.models import Teams
+from database.core import get_db
+from database.models import Teams
 
 app = FastAPI()
 
@@ -72,4 +73,12 @@ async def team_page(request: Request, id: int, db: AsyncSession = Depends(get_db
     
     return templates.TemplateResponse(
         template, context
+    )
+
+
+if __name__ == "__main__":
+    uvicorn.run(app="main:app",
+                host="0.0.0.0",
+                port=8000,
+                reload=True,
     )

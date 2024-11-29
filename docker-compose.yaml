@@ -11,7 +11,7 @@ services:
   web:
     container_name: web
     build: ./
-    command: uvicorn src.web.main:app --reload --host 0.0.0.0 --port 8000
+    command: python3 src/web/main.py
     volumes:
       - ./:/secret_santa
     ports:

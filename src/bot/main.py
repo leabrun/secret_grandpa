@@ -14,7 +14,7 @@ bot = Bot(TOKEN)
 dp = Dispatcher()
 
 
-@dp.message(Command(commands='start'))
+@dp.message(Command(commands="start"))
 async def start_command(message: types.Message):
     await bot.send_message(chat_id=message.from_user.id,
                            text="здарова лысый",
@@ -26,5 +26,5 @@ async def main():
     await dp.start_polling(bot)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
