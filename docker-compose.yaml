@@ -1,6 +1,13 @@
 version: '3.3'
 
 services:
+  tg:
+    container_name: tg
+    build: ./
+    volumes:
+      - ./:/secret_santa
+    command: python3 src/bot/main.py
+
   web:
     container_name: web
     build: ./
@@ -11,6 +18,7 @@ services:
       - ${WEB_PORT}:8000
     depends_on:
       - db
+      - tg
 
   db:
     container_name: db
