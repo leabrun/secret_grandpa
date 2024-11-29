@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Grandpa Freeze</title>
+    <title>Secret Santa</title>
     <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
@@ -14,8 +14,8 @@
         </div>
 
         <div class="buttons">
-            <a href="/create-team" class="button">Create a team</a>
-            <a href="/find-team" class="button">Join a team</a>
+            <a href="/create" class="button">Create a team</a>
+            <a href="/join" class="button">Join a team</a>
         </div>
         {% if teams %}
             <div class="section-title">My teams</div>
@@ -24,11 +24,11 @@
             <div class="section-title">Guess, you're not a teammate :(</div>
         {% endif %}
 
-        {% for team in teams %}
         <div class="teams">
-            <div class="team">{{ team.title }}</div>
+            {% for team in teams %}
+                <div class="team">{{ team.title }}</div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </body>
 </html>

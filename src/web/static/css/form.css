@@ -1,0 +1,39 @@
+.form-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.form-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container button {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-container .btn-cancel {
+    background-color: #e74c3c;
+    color: white;
+}
+.form-container .btn-submit {
+    background-color: #2ecc71;
+    color: white;
+}
+.form-container button:hover {
+    opacity: 0.9;
+}
