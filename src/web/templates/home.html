@@ -17,15 +17,18 @@
             <a href="/create-team" class="button">Create a team</a>
             <a href="/find-team" class="button">Join a team</a>
         </div>
+        {% if teams %}
+            <div class="section-title">My teams</div>
+            <div class="underline"></div>
+        {% else %}
+            <div class="section-title">Guess, you're not a teammate :(</div>
+        {% endif %}
 
-        <div class="section-title">My teams</div>
-        <div class="underline"></div>
-
+        {% for team in teams %}
         <div class="teams">
-            <div class="team">Команда 1</div>
-            <div class="team">Команда 2</div>
-            <div class="team">Команда 3</div>
+            <div class="team">{{ team.title }}</div>
         </div>
+        {% endfor %}
     </div>
 </body>
 </html>
