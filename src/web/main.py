@@ -5,8 +5,9 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 import uvicorn
+import asyncio
 
-from database.core import get_db
+from database.core import get_db, init_db
 from database.models import Teams
 
 app = FastAPI()
@@ -77,6 +78,7 @@ async def team_page(request: Request, id: int, db: AsyncSession = Depends(get_db
 
 
 if __name__ == "__main__":
+    asyncio.run(init_db())
     uvicorn.run(app="main:app",
                 host="0.0.0.0",
                 port=8000,
