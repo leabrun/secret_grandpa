@@ -1,36 +1,52 @@
-from typing import Optional
-
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import (
-    DeclarativeBase,
-    Mapped,
-    mapped_column,
-)
+from sqlalchemy import (Column, String,
+                        Integer, Boolean,
+                        ForeignKey, Text,
+                        BigInteger)
+from sqlalchemy.orm import DeclarativeBase
 
 
 class Base(DeclarativeBase):
-    id: Mapped[int] = mapped_column(primary_key=True)
+    pass
+
+
+class Users(Base):
+    __tablename__ = "users"
+
+    id = Column(BigInteger, primary_key=True)
+    name = Column(String, nullable=False)
 
 
 class Teams(Base):
     __tablename__ = "teams"
 
-    title: Mapped[str]
-    owner: Mapped[str]
-    is_closed: Mapped[bool] = mapped_column(default=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(String(25), nullable=False)
+    owner_id = Column(BigInteger,
+                      ForeignKey("users.id", ondelete="CASCADE"),
+                      nullable=False)
+    is_closed = Column(Boolean, default=False)
+    code = Column(String(10), unique=True, default=None)
 
 
-# class Members(Base):
-#     __tablename__ = "members"
+class Members(Base):
+    __tablename__ = "members"
 
-#     user_id: Mapped[str]
-#     worker_id: Mapped[int] = mapped_column(ForeignKey("teams.id", ondelete="CASCADE"))
+    user_id = Column(BigInteger,
+                     ForeignKey("users.id", ondelete="CASCADE"),
+                     primary_key=True)
+    team_id = Column(Integer,
+                     ForeignKey("teams.id", ondelete="CASCADE"),
+                     primary_key=True)
+    destiny = Column(BigInteger, default=None)
 
 
-# class Wishes(Base):
-#     __tablename__ = "wishes"
+class Wishes(Base):
+    __tablename__ = "wishes"
 
-#     title: Mapped[str]
-#     url: Mapped[Optional[str]]
-#     owner: Mapped[str]
-#     is_selected: Mapped[bool] = mapped_column(default=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(String(100), nullable=False)
+    url = Column(Text, nullable=True)
+    owner_id = Column(BigInteger,
+                      ForeignKey("users.id", ondelete="CASCADE"),
+                      nullable=False)
+    is_selected = Column(Boolean, default=False)

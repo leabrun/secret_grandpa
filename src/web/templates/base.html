@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="/static/css/base.css">
+    {% block links %}{% endblock %}
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <a href="/home">SecretFS</a>
+            <div class="user-info">
+                <a id="nickname" href="">first_name</a>
+                <img id="avatar" src="/static/images/avatar.png" alt="avatar"> 
+            </div>
+            <script>
+                let tg = window.Telegram.WebApp;
+        
+                let tg_data = tg.initDataUnsafe;
+                let tg_user = tg_data.user;
+                
+                nickName = document.getElementById("nickname");
+                nickName.textContent = tg_user.first_name;
+                nickName.href = `/user/${tg_user.id}`;
+
+                const avatar = document.getElementById("avatar");
+                avatar.src = tg_user.photo_url
+            </script>
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+        <p>made by <a href="https://t.me/leabr_n">leabrun</a></p> 
+    </div>
+</body>
+</html>

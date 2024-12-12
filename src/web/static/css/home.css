@@ -1,91 +1,98 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-size: cover;
-    color: #ffffff;
-    text-align: center;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background: url('/static/images/back.png') no-repeat center center fixed;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.avatar {
-    width: 80px;
-    height: 80px;
-    background-color: #b3d9ff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.nickname {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #00509e;
-}
-
-.buttons {
+.teams-header {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    align-items: center;
+    margin: 0px 30px; /* Уменьшаем отступы от сторон */
+    color: #4169E1; /* Цвет текста заголовка */
+    font-size: 14px; /* Уменьшаем размер текста для заголовка */
+    font-weight: bold; /* Жирный шрифт для заголовка */
 }
 
-.button {
-    flex: 1;
-    margin: 0 10px;
-    padding: 15px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #0073e6;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
+.teams-header .heading {
+    font-size: 20px;
 }
 
-.button:hover {
-    background-color: #00509e;
+.new-button, .del-button {
+    color: #ffffff; /* Цвет текста кнопок */
+    border: none;
+    border-radius: 5px; /* Закругленные углы кнопок */
+    padding: 10px 15px; /* Отступы внутри кнопок */
+    margin-left: 10px;
+    cursor: pointer; /* Курсор при наведении */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт для кнопок */
 }
 
-.section-title {
-    margin: 20px 0 10px;
-    font-size: 1.5rem;
-    color: #003d73;
+.new-button {
+    background-color: #4169E1; /* Основной цвет кнопок */
+}
+
+.new-button:hover {
+    background-color: #0000CD; /* Темный цвет при наведении */
 }
 
 .underline {
-    width: 80%;
-    height: 2px;
-    margin: 0 auto 20px;
-    background-color: #b3d9ff;
+    border-bottom: 2px solid #4169E1; /* Подчеркивание */
+    margin: 10px 0; /* Отступы сверху и снизу */
 }
 
-.teams {
+.team-item {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Белый фон для команд */
+    border: none; /* Убираем рамку */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 15px; /* Отступы внутри блока команды */
+    margin-bottom: 10px; /* Отступы между командами */
 }
 
-.team {
-    padding: 15px;
-    background-color: #d9f2ff;
-    border-radius: 10px;
-    color: #003d73;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.team-item .team-name {
+    color: #4169E1;
+    text-decoration: none; /* Убираем подчеркивание у названий команд */
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.team-item .owner {
+    color: grey;
+}
+
+.del-button {
+    background-color: #d32f2f; /* Красный цвет для кнопки удаления */
+}
+
+.del-button:hover {
+    background-color: #c62828; /* Темный цвет при наведении для удаления */
+}
+
+.assign-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px; /* Закругленные углы кнопок */
+    padding: 10px 15px; /* Отступы внутри кнопок */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт для кнопок */
+}
+
+.assign-button .new-button {
+    border: none;
+    border-radius: 5px; /* Закругленные углы кнопок */
+    padding: 10px 15px; /* Отступы внутри кнопок */
+    cursor: pointer; /* Курсор при наведении */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный шрифт для кнопок */
+}
+
+.assign-button .new-button:hover {
+    background-color: #0000CD; /* Темный цвет при наведении */    
+}
+
+.text-assigned {
+    color: #4169E1;
+    text-align: center;
+    margin: 18px;
+    font-size: 18px;
 }

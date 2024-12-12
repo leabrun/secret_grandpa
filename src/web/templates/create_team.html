@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Create{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="/static/css/form.css">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="heading">CREATE A TEAM</div>
+    <form action="/create/team" method="POST">
+        <input type="text" name="team_title" placeholder="Title here" required>
+        <div class="button-container">
+            <a href="/home" class="cancel-button">CANCEL</a>
+            <button type="submit" class="create-button">CREATE</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

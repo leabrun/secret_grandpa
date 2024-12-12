@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preloading</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="/static/css/start.css">
+</head>
+<body>
+    <div class="spinner"></div>
+    <div class="loading-text">Loading application resources...</div>
+    <script>
+        let tg = window.Telegram.WebApp;
+
+        let tg_data = tg.initDataUnsafe;
+        let tg_user = tg_data.user;
+        const user_id = tg_user.id;
+        const user_name = tg_user.first_name;
+        const team_code = tg_data.start_param;
+
+        setTimeout(() => {
+            fetch("/set/user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user_id, user_name, team_code }),
+            }).then(() => {
+                window.location.href = "/home";
+            });
+        }, 2000);
+    </script>
+</body>
+</html>

@@ -1,80 +1,45 @@
-from fastapi import FastAPI, Depends, Request, Form
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
-from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi.responses import HTMLResponse
 import uvicorn
 import asyncio
+from dotenv import load_dotenv
 
-from database.core import get_db, init_db
-from database.models import Teams
+from database.core import init_db
+from database.queries import select_teams_by_user_id
+from routers import system, team, user, wish
+from utils import templates, get_id_from_cookie
+
+load_dotenv()
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="src/web/static"))
-templates = Jinja2Templates(directory="src/web/templates")
+
+app.include_router(system.router)
+app.include_router(team.router)
+app.include_router(user.router)
+app.include_router(wish.router)
 
 
 @app.get("/", response_class=HTMLResponse)
-async def home_page(request: Request, db: AsyncSession = Depends(get_db)):
+async def start_page(request: Request):
+    template = "start.html"
+    context = {"request": request}
+
+    return templates.TemplateResponse(template, context)
+
+
+@app.get("/home", response_class=HTMLResponse)
+async def home_page(request: Request):
     template = "home.html"
     context = {"request": request}
 
-    res = await db.execute(text("SELECT title, id FROM teams"))
-    teams = res.fetchall()
-
+    client_id = get_id_from_cookie(request)
+    teams = await select_teams_by_user_id(client_id)
     context["teams"] = teams
 
-    return templates.TemplateResponse(
-        template, context
-    )
-
-
-@app.get("/create", response_class=HTMLResponse)
-async def create_page(request: Request):
-    return templates.TemplateResponse("create.html", {"request": request})
-
-
-@app.post("/create")
-async def create_team(team_title: str = Form(...),
-                      db: AsyncSession = Depends(get_db)):
-    new_team = Teams(title=team_title, owner="me", is_closed=False)
-    db.add(new_team)
-    await db.commit()
-
-    return RedirectResponse("/", status_code=303)
-
-
-@app.get("/join", response_class=HTMLResponse)
-async def join_page(request: Request):
-    return templates.TemplateResponse("join.html", {"request": request})
-
-
-@app.post("/join")
-async def join_team(team_number: str = Form(...),
-                      db: AsyncSession = Depends(get_db)):
-    # some
-
-    return RedirectResponse("/", status_code=303)
-
-
-@app.get("/team/{id}", response_class=HTMLResponse)
-async def team_page(request: Request, id: int, db: AsyncSession = Depends(get_db)):
-    template = "team.html"
-    context = {"request": request}
-
-    res = await db.execute(text(f"SELECT title FROM teams WHERE id={id}"))
-    team = res.first()
-
-    if not team:
-        return HTMLResponse(content="Team not found", status_code=404)
-    
-    context["team"] = team
-    
-    return templates.TemplateResponse(
-        template, context
-    )
+    return templates.TemplateResponse(template, context)
 
 
 if __name__ == "__main__":
@@ -82,5 +47,4 @@ if __name__ == "__main__":
     uvicorn.run(app="main:app",
                 host="0.0.0.0",
                 port=8000,
-                reload=True,
-    )
+                reload=True)

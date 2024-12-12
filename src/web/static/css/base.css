@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #e0f7fa; */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url("/static/images/back.jpg");
+}
+
+.main-container {
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header a {
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    color: #4169E1; /* Темно-зеленый цвет */
+    font-weight: bold;
+    font-size: 18px; /* Увеличиваем размер текста для кнопки SecretFS */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info a {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.user-info img {
+    border-radius: 50%; /* Круглая аватарка */
+    width: 70px; /* Увеличенная ширина аватарки */
+    height: 70px; /* Увеличенная высота аватарки */
+}
+
+.content {
+    padding: 20px; /* Отступы вокруг контента */
+}
+
+.content .oops {
+    color: #4169E1;
+    text-align: center;
+    margin: 18px;
+    font-size: 18px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px; /* Отступы вокруг футера */
+}
+
+.footer a {
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    color: #4169E1; /* Темно-зеленый цвет */
+}

@@ -17,7 +17,7 @@ dp = Dispatcher()
 @dp.message(Command(commands="start"))
 async def start_command(message: types.Message):
     await bot.send_message(chat_id=message.from_user.id,
-                           text="здарова лысый",
+                           text="just press 'launch'",
                            reply_markup=ReplyKeyboardRemove())
 
 

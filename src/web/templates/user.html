@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <div class="teams-header">
+        {% if is_owner %}
+            <div class="heading">MY WISHES</div>
+            <a href="/create/wish" class="new-button">NEW WISH</a>
+        {% else %}
+            <div class="heading">WISHLIST by {{ user_name }}</div>
+        {% endif %}
+    </div>
+
+    <div class="underline"></div>
+
+    {% if not wishes %}
+        <div class="oops">I can't believe there is nothing!</div>
+    {% endif %}
+
+    {% for wish in wishes %}
+    <div class="team-item">
+        {% if wish.url %}
+            <a href="{{ wish.url }}" class="team-name" target="_blank">{{ wish.title }}</a>
+        {% else %}
+            <div class="team-name">{{ wish.title }}</div>
+        {% endif %}
+
+        {% if is_owner %}
+        <a href="/delete/wish/{{ wish.id }}" class="del-button">DEL</a>
+        {% else %}
+            <a href="/delete/wish/{{ wish.id }}" class="del-button">select</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

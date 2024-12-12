@@ -1,25 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Santa</title>
-    <link rel="stylesheet" href="/static/css/home.css">
-    <link rel="stylesheet" href="/static/css/team.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="team-name">Team Name</div>
-            <button class="invite-button">Invite</button>
-        </div>
-        <div class="underline"></div>
+{% extends "base.html" %}
 
-        <div class="teams">
-            <div class="team">мембер 1</div>
-            <div class="team">мембер 1</div>
-            <div class="team">мембер 1</div>
-        </div>
+{% block title %}{{ team.title }}{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <div class="teams-header">
+        <div class="heading">{{ team.title }}</div>
+        <a id="share-link" href="https://t.me/share/url?url=t.me/fathercris_bot/ScrtFthrCrstms?startapp={{ team.code }}" class="new-button">INVITE</a>
+
+        {% if is_owner %}
+            <a href="/delete/team/{{ team.id }}" class="del-button">DEL</a>
+        {% endif %}
     </div>
-</body>
-</html>
+
+    <div class="underline"></div>
+
+    {% if team.is_closed and destiny %}
+        <div class="oops">Your destiny is {{ destiny }}</div>
+    {% endif %}
+
+    {% for member in members %}
+    <div class="team-item">
+        <a href="/user/{{ member.id }}" class="team-name">{{ member.name }}</a>
+
+        {% if member.id == team.owner_id %}
+            <div class="owner">(Owner)</div>
+        {% endif %}
+        
+        {% if is_owner and member.id != team.owner_id %}
+            <a href="/delete/member/{{ member.id }}/{{ team.id }}" class="del-button">DEL</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if team.is_closed %}
+        <div class="text-assigned">
+            Ho-ho-ho! Members were assigned!
+        </div>
+    {% else %}
+        {% if is_owner %}
+            <div class="assign-button">
+                <a href="/assign/{{ team.id }}" class="new-button">ASSIGN MEMBERS</a>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secret Santa</title>
+{% extends "base.html" %}
+
+{% block title %}Secret Father Cristmas{% endblock %}
+
+{% block links %}
     <link rel="stylesheet" href="/static/css/home.css">
-</head>
-<body>
-    <div class="container">
-        <div class="user-info">
-            <div class="avatar"></div>
-            <div class="nickname">Username</div>
-        </div>
+{% endblock %}
 
-        <div class="buttons">
-            <a href="/create" class="button">Create a team</a>
-            <a href="/join" class="button">Join a team</a>
-        </div>
-        {% if teams %}
-            <div class="section-title">My teams</div>
-            <div class="underline"></div>
-        {% else %}
-            <div class="section-title">Guess, you're not a teammate :(</div>
-        {% endif %}
-
-        <div class="teams">
-            {% for team in teams %}
-                <div class="team"><a href="/team/{{ team.id }}">{{ team.title }}</a></div>
-            {% endfor %}
-        </div>
+{% block content %}
+    <div class="teams-header">
+        <div class="heading">MY TEAMS</div>
+        <a href="/create/team" class="new-button">NEW TEAM</a>
     </div>
-</body>
-</html>
+
+    <div class="underline"></div>
+
+    {% if not teams %}
+        <div class="oops">Guess, you're not a teammate :(</div>
+    {% endif %}
+
+    {% for team in teams %}
+    <div class="team-item" style="justify-content: center; padding: 18px;">
+        <a href="/team/{{ team.id }}" class="team-name">{{ team.title }}</a>
+    </div>
+    {% endfor %}
+{% endblock %}
