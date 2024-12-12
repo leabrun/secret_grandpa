@@ -1,7 +1,8 @@
 from fastapi import Request, APIRouter, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 
-from database.queries import insert_wish, select_wish_by_id, delete_wish
+from database.queries import (insert_wish, select_wish_by_id,
+                              delete_wish, select_wish)
 from utils import get_id_from_cookie, templates
 
 router = APIRouter()
@@ -35,7 +36,6 @@ async def create_wish_request(request: Request,
 @router.get("/delete/wish/{wish_id}")
 async def delete_wish_request(request: Request,
                               wish_id: int):
-
     client_id = get_id_from_cookie(request)
     wish = await select_wish_by_id(wish_id)
 
@@ -46,3 +46,21 @@ async def delete_wish_request(request: Request,
         await delete_wish(wish_id)
 
     return RedirectResponse(f"/user/{client_id}", status_code=303)
+
+
+@router.get("/select/wish/{wish_id}")
+async def select_wish_request(request: Request,
+                              wish_id: int):
+    client_id = get_id_from_cookie(request)
+    wish = await select_wish_by_id(wish_id)
+
+    if not wish:
+        return HTMLResponse(content="Wish not found", status_code=404)
+
+    if not wish.selector_id or wish.selector_id == client_id:
+        if wish.is_selected:
+            client_id = None
+
+        await select_wish(wish_id, client_id)
+
+    return RedirectResponse(f"/user/{wish.owner_id}", status_code=303)

@@ -12,7 +12,7 @@
             <div class="heading">MY WISHES</div>
             <a href="/create/wish" class="new-button">NEW WISH</a>
         {% else %}
-            <div class="heading">WISHLIST by {{ user_name }}</div>
+            <div class="heading" style="margin-top: 13px;">WISHLIST by {{ user_name }}</div>
         {% endif %}
     </div>
 
@@ -31,9 +31,20 @@
         {% endif %}
 
         {% if is_owner %}
-        <a href="/delete/wish/{{ wish.id }}" class="del-button">DEL</a>
+            <a href="/delete/wish/{{ wish.id }}" class="del-button">DEL</a>
+
         {% else %}
-            <a href="/delete/wish/{{ wish.id }}" class="del-button">select</a>
+            {% if wish.is_selected %}
+                {% if wish.selector_id == client_id %}
+                    <a href="/select/wish/{{ wish.id }}" class="selected-button">your choice</a>
+
+                {% else%}
+                    <a href="" class="del-button">was selected</a>
+                {% endif %}
+
+            {% else %}
+                <a href="/select/wish/{{ wish.id }}" class="new-button">wanna give</a>
+            {% endif %}
         {% endif %}
     </div>
     {% endfor %}

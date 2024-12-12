@@ -2,10 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 30px; /* Уменьшаем отступы от сторон */
-    color: #4169E1; /* Цвет текста заголовка */
-    font-size: 14px; /* Уменьшаем размер текста для заголовка */
-    font-weight: bold; /* Жирный шрифт для заголовка */
+    margin: 0px 30px;
+    color: #4169E1;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .teams-header .heading {
@@ -13,43 +13,43 @@
 }
 
 .new-button, .del-button {
-    color: #ffffff; /* Цвет текста кнопок */
+    color: #ffffff;
     border: none;
-    border-radius: 5px; /* Закругленные углы кнопок */
-    padding: 10px 15px; /* Отступы внутри кнопок */
+    border-radius: 5px;
+    padding: 10px 15px;
     margin-left: 10px;
-    cursor: pointer; /* Курсор при наведении */
-    text-decoration: none; /* Убираем подчеркивание */
-    font-weight: bold; /* Жирный шрифт для кнопок */
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .new-button {
-    background-color: #4169E1; /* Основной цвет кнопок */
+    background-color: #4169E1;
 }
 
 .new-button:hover {
-    background-color: #0000CD; /* Темный цвет при наведении */
+    background-color: #0000CD;
 }
 
 .underline {
-    border-bottom: 2px solid #4169E1; /* Подчеркивание */
-    margin: 10px 0; /* Отступы сверху и снизу */
+    border-bottom: 2px solid #4169E1;
+    margin: 10px 0;
 }
 
 .team-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff; /* Белый фон для команд */
-    border: none; /* Убираем рамку */
-    border-radius: 10px; /* Закругленные углы */
-    padding: 15px; /* Отступы внутри блока команды */
-    margin-bottom: 10px; /* Отступы между командами */
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
 }
 
 .team-item .team-name {
     color: #4169E1;
-    text-decoration: none; /* Убираем подчеркивание у названий команд */
+    text-decoration: none;
     font-size: 18px;
     margin: 10px 0;
 }
@@ -59,11 +59,11 @@
 }
 
 .del-button {
-    background-color: #d32f2f; /* Красный цвет для кнопки удаления */
+    background-color: #d32f2f;
 }
 
 .del-button:hover {
-    background-color: #c62828; /* Темный цвет при наведении для удаления */
+    background-color: #c62828;
 }
 
 .assign-button {
@@ -71,23 +71,23 @@
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 5px; /* Закругленные углы кнопок */
-    padding: 10px 15px; /* Отступы внутри кнопок */
-    text-decoration: none; /* Убираем подчеркивание */
-    font-weight: bold; /* Жирный шрифт для кнопок */
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .assign-button .new-button {
     border: none;
-    border-radius: 5px; /* Закругленные углы кнопок */
-    padding: 10px 15px; /* Отступы внутри кнопок */
-    cursor: pointer; /* Курсор при наведении */
-    text-decoration: none; /* Убираем подчеркивание */
-    font-weight: bold; /* Жирный шрифт для кнопок */
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .assign-button .new-button:hover {
-    background-color: #0000CD; /* Темный цвет при наведении */    
+    background-color: #0000CD;
 }
 
 .text-assigned {
@@ -95,4 +95,20 @@
     text-align: center;
     margin: 18px;
     font-size: 18px;
+}
+
+.selected-button {
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #3CB371;
+}
+
+.selected-button:hover {
+    background-color: #006400;
 }

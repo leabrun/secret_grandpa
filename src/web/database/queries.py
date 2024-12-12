@@ -155,7 +155,8 @@ async def get_destiny_name(user_id: int, team_id: int):
 async def select_wishes_by_owner_id(id: int):
     async with AsyncSessionLocal() as asl:
         wishes_q = await asl.execute(text(f"SELECT * FROM wishes \
-                                          WHERE owner_id={id}"))
+                                          WHERE owner_id={id} \
+                                          ORDER BY id DESC"))
 
         return wishes_q.fetchall()
 
@@ -180,4 +181,15 @@ async def insert_wish(title: str, url: Optional[str], id: int):
 async def delete_wish(id: int):
     async with AsyncSessionLocal() as asl:
         await asl.execute(text(f"DELETE FROM wishes WHERE id={id}"))
+        await asl.commit()
+
+
+async def select_wish(id: int, selector_id: Optional[int]):
+    async with AsyncSessionLocal() as asl:
+        is_selected = True if selector_id else False
+
+        await asl.execute(update(Wishes)
+                          .where(Wishes.id == id)
+                          .values(is_selected=is_selected,
+                                  selector_id=selector_id))
         await asl.commit()

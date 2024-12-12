@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    /* background-color: #e0f7fa; */
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,10 +20,10 @@ body {
 }
 
 .header a {
-    text-decoration: none; /* Убираем подчеркивание у ссылки */
-    color: #4169E1; /* Темно-зеленый цвет */
+    text-decoration: none;
+    color: #4169E1;
     font-weight: bold;
-    font-size: 18px; /* Увеличиваем размер текста для кнопки SecretFS */
+    font-size: 18px;
 }
 
 .user-info {
@@ -38,13 +37,13 @@ body {
 }
 
 .user-info img {
-    border-radius: 50%; /* Круглая аватарка */
-    width: 70px; /* Увеличенная ширина аватарки */
-    height: 70px; /* Увеличенная высота аватарки */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
 }
 
 .content {
-    padding: 20px; /* Отступы вокруг контента */
+    padding: 20px;
 }
 
 .content .oops {
@@ -56,10 +55,10 @@ body {
 
 .footer {
     text-align: center;
-    padding: 20px; /* Отступы вокруг футера */
+    padding: 20px;
 }
 
 .footer a {
-    text-decoration: none; /* Убираем подчеркивание у ссылки */
-    color: #4169E1; /* Темно-зеленый цвет */
+    text-decoration: none;
+    color: #4169E1;
 }

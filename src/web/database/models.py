@@ -50,3 +50,4 @@ class Wishes(Base):
                       ForeignKey("users.id", ondelete="CASCADE"),
                       nullable=False)
     is_selected = Column(Boolean, default=False)
+    selector_id = Column(BigInteger, default=None)

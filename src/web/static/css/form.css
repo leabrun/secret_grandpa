@@ -1,61 +1,61 @@
 .form-container {
-    background-color: #ffffff; /* Белый фон для формы */
-    border-radius: 10px; /* Закругленные углы */
-    padding: 20px; /* Внутренние отступы внутри формы */
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
     margin: 0 auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень под формой */
-    max-width: 400px; /* Максимальная ширина формы */
-    text-align: center; /* Центрируем текст в форме */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
 }
 
 .form-container .heading {
     font-size: 20px;
-    font-weight: bold; /* Жирный шрифт для заголовка */
-    margin-bottom: 20px; /* Отступ снизу заголовка */
-    color: #4169E1; /* Цвет заголовка формы */
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #4169E1;
 }
 
 .form-container input {
-    width: 93%; /* Поле ввода на 100% ширины */
-    padding: 10px; /* Отступы внутри поля */
-    margin-bottom: 20px; /* Отступ снизу поля ввода */
-    border: 1px solid #4169E1; /* Темно-зеленая рамка */
-    border-radius: 5px; /* Закругленные углы */
-    font-size: 16px; /* Размер шрифта для поля ввода */
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4169E1;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .form-container .button-container {
     display: flex;
-    justify-content: space-between; /* Распределяем кнопки по горизонтали */
+    justify-content: space-between;
 }
 
 .cancel-button {
-    background-color: #d32f2f; /* Красный цвет для кнопки отмены */
-    color: #ffffff; /* Белый текст на кнопке */
+    background-color: #d32f2f;
+    color: #ffffff;
     border: none;
-    border-radius: 5px; /* Закругленные углы кнопки */
-    padding: 10px 15px; /* Отступы внутри кнопки */
-    cursor: pointer; /* Курсор при наведении */
-    text-decoration: none; /* Убираем подчеркивание */
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-decoration: none;
     font-size: 12px;
-    font-weight: bold; /* Жирный шрифт для кнопки */
+    font-weight: bold;
 }
 
 .create-button {
-    background-color: #4169E1; /* Голубой цвет для кнопки создания */
-    color: #ffffff; /* Белый текст на кнопке */
+    background-color: #4169E1;
+    color: #ffffff;
     border: none;
-    border-radius: 5px; /* Закругленные углы кнопки */
-    padding: 10px 15px; /* Отступы внутри кнопки */
-    cursor: pointer; /* Курсор при наведении */
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
     font-size: 12px;
-    font-weight: bold; /* Жирный шрифт для кнопки */
+    font-weight: bold;
 }
 
 .cancel-button:hover {
-    background-color: #c62828; /* Темный цвет при наведении для кнопки создания */
+    background-color: #c62828;
 }
 
 .create-button:hover {
-    background-color: #0000CD; /* Темный цвет при наведении для кнопки создания */
+    background-color: #0000CD;
 }

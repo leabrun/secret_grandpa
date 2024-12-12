@@ -29,6 +29,7 @@ async def user_page(request: Request,
     if not is_owner:
         user_name = user.name
         context["user_name"] = user_name
+        context["client_id"] = client_id
 
     context["wishes"] = wishes
     context["is_owner"] = is_owner
