@@ -8,6 +8,7 @@
     <img src="https://img.shields.io/badge/Uvicorn-0.32.1-purple?logo=uvicorn&style=flat"/>
     <img src="https://img.shields.io/badge/Aiogram-3.15.0-blue?logo=aiogram&style=flat"/>
     <img src="https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff"/>
     <img src="https://img.shields.io/badge/SQLAlchemy-2.0.36-green?logo=sqlalchemy&style=flat"/>
     <img src="https://img.shields.io/badge/itsdangerous-2.2.0-red?logo=itsdangerous&style=flat"/>
 </p>
