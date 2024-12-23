@@ -36,7 +36,7 @@ async def set_user(request: Request,
     async def set_member(user_id: int, team_code: str):
         team = await select_team_by_code(team_code)
 
-        if team:
+        if team and not team.is_closed:
             member = await select_member(user_id, team.id)
 
             if not member:
