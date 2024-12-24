@@ -20,7 +20,7 @@
 
     {% for team in teams %}
     <div class="team-item" style="justify-content: center;">
-        <a href="/team/{{ team.id }}" class="team-name">{{ team.title }}</a>
+        <a href="/team/{{ team.id }}" class="team-name" style="width: auto;">{{ team.title }}</a>
     </div>
     {% endfor %}
 {% endblock %}

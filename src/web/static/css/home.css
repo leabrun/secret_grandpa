@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 30px;
+    margin: 0px 20px;
     color: #4169E1;
     font-size: 14px;
     font-weight: bold;
@@ -17,6 +17,7 @@
 
 .teams-header .heading {
     font-size: 20px;
+    overflow-wrap: anywhere;
 }
 
 .new-button, .del-button {
@@ -59,6 +60,8 @@
     color: #4169E1;
     font-size: 18px;
     margin: 10px 0;
+    width: 80%;
+    overflow-wrap: anywhere;
 }
 
 .team-item .owner {

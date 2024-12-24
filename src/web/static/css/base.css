@@ -28,11 +28,13 @@ body {
 .user-info {
     display: flex;
     align-items: center;
+    margin-left: 20px;
 }
 
 .user-info a {
     margin-right: 10px;
     font-size: 18px;
+    overflow-wrap: anywhere;
 }
 
 .user-info img {
