@@ -16,6 +16,8 @@
 
         {% if is_owner %}
             <a href="/delete/team/{{ team.id }}" class="del-button">DEL</a>
+        {% else %}
+            <a href="/quit/team/{{ team.id }}" class="del-button">QUIT</a>
         {% endif %}
     </div>
 

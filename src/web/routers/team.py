@@ -83,3 +83,15 @@ async def delete_member_request(request: Request,
         await delete_member(member_id, team_id)
 
     return RedirectResponse(f"/team/{team_id}", status_code=303)
+
+
+@router.get("/quit/team/{team_id}")
+async def quit_team_request(request: Request,
+                            team_id: int):
+    client_id = get_id_from_cookie(request)
+    team = await select_team_by_id(team_id)
+
+    if team:
+        await delete_member(client_id, team_id)
+
+    return RedirectResponse("/home", status_code=303)
