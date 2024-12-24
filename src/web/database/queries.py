@@ -33,20 +33,20 @@ async def select_team_by_id(id: str):
 
 async def select_team_by_code(code: str):
     async with AsyncSessionLocal() as asl:
-        team_q = await asl.execute(text(f"SELECT * FROM teams \
-                                        WHERE code='{code}'"))
+        team_q = await asl.execute(text("SELECT * FROM teams "
+                                        f"WHERE code='{code}'"))
 
         return team_q.first()
 
 
 async def select_teams_by_user_id(id: int):
     async with AsyncSessionLocal() as asl:
-        teams_q = await asl.execute(text(f"SELECT teams.title, teams.id \
-                                         FROM teams \
-                                         INNER JOIN members \
-                                         ON teams.id = members.team_id \
-                                         WHERE members.user_id={id} \
-                                         ORDER BY teams.id DESC"))
+        teams_q = await asl.execute(text(f"SELECT teams.title, teams.id "
+                                         "FROM teams "
+                                         "INNER JOIN members "
+                                         "ON teams.id = members.team_id "
+                                         f"WHERE members.user_id={id} "
+                                         "ORDER BY teams.id DESC"))
 
         return teams_q.fetchall()
 
@@ -81,29 +81,30 @@ async def insert_member(user_id: int, team_id: int):
 
 async def select_members_by_team_id(id: int):
     async with AsyncSessionLocal() as asl:
-        members_q = await asl.execute(text(f"SELECT users.id, users.name \
-                                           FROM users \
-                                           INNER JOIN members \
-                                           ON users.id = members.user_id \
-                                           WHERE members.team_id={id}"))
+        members_q = await asl.execute(text("SELECT users.id, users.name "
+                                           "FROM users "
+                                           "INNER JOIN members "
+                                           "ON users.id = members.user_id "
+                                           f"WHERE members.team_id={id} "
+                                           "ORDER BY users.id"))
 
         return members_q.fetchall()
 
 
 async def select_member(user_id: int, team_id: int):
     async with AsyncSessionLocal() as asl:
-        members_q = await asl.execute(text(f"SELECT * FROM members \
-                                           WHERE user_id={user_id} \
-                                           AND team_id={team_id}"))
+        members_q = await asl.execute(text("SELECT * FROM members "
+                                           f"WHERE user_id={user_id} "
+                                           f"AND team_id={team_id}"))
 
         return members_q.fetchall()
 
 
 async def delete_member(member_id: int, team_id: int):
     async with AsyncSessionLocal() as asl:
-        await asl.execute(text(f"DELETE FROM members \
-                               WHERE user_id={member_id} \
-                               AND team_id={team_id}"))
+        await asl.execute(text("DELETE FROM members "
+                               f"WHERE user_id={member_id} "
+                               f"AND team_id={team_id}"))
         await asl.commit()
 
 
@@ -138,33 +139,33 @@ async def assign_members(id: int):
         await asl.commit()
 
 
-async def get_destiny_name(user_id: int, team_id: int):
-    async with AsyncSessionLocal.begin() as asl:
-        destiny_q = await asl.execute(text(f"SELECT users.name \
-                                           FROM members \
-                                           INNER JOIN users \
-                                           ON members.destiny = users.id \
-                                           WHERE members.user_id={user_id} \
-                                           AND members.team_id={team_id}"))
+async def get_destiny(user_id: int, team_id: int):
+    async with AsyncSessionLocal() as asl:
+        destiny_q = await asl.execute(text("SELECT users.id, users.name "
+                                           "FROM members "
+                                           "INNER JOIN users "
+                                           "ON members.destiny = users.id "
+                                           f"WHERE members.user_id={user_id} "
+                                           f"AND members.team_id={team_id}"))
         destiny = destiny_q.first()
 
-        return destiny.name
+        return destiny
 
 
 # ----------- WISHES -------------
 async def select_wishes_by_owner_id(id: int):
     async with AsyncSessionLocal() as asl:
-        wishes_q = await asl.execute(text(f"SELECT * FROM wishes \
-                                          WHERE owner_id={id} \
-                                          ORDER BY id DESC"))
+        wishes_q = await asl.execute(text("SELECT * FROM wishes "
+                                          f"WHERE owner_id={id} "
+                                          "ORDER BY id DESC"))
 
         return wishes_q.fetchall()
 
 
 async def select_wish_by_id(id: int):
     async with AsyncSessionLocal() as asl:
-        wishes_q = await asl.execute(text(f"SELECT * FROM wishes \
-                                          WHERE id={id}"))
+        wishes_q = await asl.execute(text("SELECT * FROM wishes "
+                                          f"WHERE id={id}"))
 
         return wishes_q.first()
 

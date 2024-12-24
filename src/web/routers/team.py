@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 
 from database.queries import (insert_team, select_team_by_id,
                               delete_team, select_members_by_team_id,
-                              delete_member, get_destiny_name)
+                              delete_member, get_destiny)
 from utils import templates, get_id_from_cookie
 
 router = APIRouter()
@@ -62,7 +62,7 @@ async def team_page(request: Request,
     members = await select_members_by_team_id(team_id)
 
     if team.is_closed:
-        client_destiny = await get_destiny_name(client_id, team_id)
+        client_destiny = await get_destiny(client_id, team_id)
         context["destiny"] = client_destiny
 
     context["team"] = team

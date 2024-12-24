@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="teams-header">
-        <div class="heading">{{ team.code }}</div>
+        <div class="heading">{{ team.title }}</div>
 
         {% if not team.is_closed %}
             <a id="share-link" href="https://t.me/share/url?url=t.me/secretgrandpafrost_bot/app?startapp={{ team.code }}" class="new-button">INVITE</a>
@@ -22,18 +22,20 @@
     <div class="underline"></div>
 
     {% if team.is_closed and destiny %}
-        <div class="oops">Your destiny is {{ destiny }}</div>
+        <div class="oops">Prepare a gift for 
+            <a href="/user/{{ destiny.id }}">{{ destiny.name }}</a>
+        </div>
     {% endif %}
 
     {% for member in members %}
     <div class="team-item">
-        <a href="/user/{{ member.id }}" class="team-name">{{ member.name }}</a>
+        <div class="team-name">{{ member.name }}</div>
 
         {% if member.id == team.owner_id %}
             <div class="owner">(Owner)</div>
         {% endif %}
         
-        {% if is_owner and member.id != team.owner_id %}
+        {% if is_owner and member.id != team.owner_id and not team.is_closed %}
             <a href="/delete/member/{{ member.id }}/{{ team.id }}" class="del-button">DEL</a>
         {% endif %}
     </div>

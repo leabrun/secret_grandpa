@@ -1,3 +1,10 @@
+.content .oops a {
+    color: #000080;
+}
+.content .oops a:visited {
+    color: #000080;
+}
+
 .teams-header {
     display: flex;
     justify-content: space-between;
@@ -107,6 +114,7 @@
     text-decoration: none;
     font-weight: bold;
     background-color: #3CB371;
+    text-align: center;
 }
 
 .selected-button:hover {
