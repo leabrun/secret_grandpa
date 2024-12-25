@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Request, Response
 from fastapi.responses import RedirectResponse
+from typing import Optional
 
 from database.queries import (select_user_by_id,
                               insert_user,
+                              update_user,
                               select_team_by_code,
                               select_team_by_id,
                               insert_member,
@@ -25,11 +27,15 @@ async def set_user(request: Request,
 
         return True
 
-    async def save_user(user_id: int, user_name: str):
+    async def save_user(user_id: int, user_name: str,
+                        photo_url: Optional[str]):
         user = await select_user_by_id(user_id)
 
         if not user:
-            await insert_user(user_id, user_name)
+            await insert_user(user_id, user_name, photo_url)
+
+        elif user.name != user_name or user.photo != photo_url:
+            await update_user(user_id, user_name, photo_url)
 
         return True
 
@@ -46,11 +52,12 @@ async def set_user(request: Request,
 
     client_id = data.get("user_id")
     client_name = data.get("user_name")
+    photo_url = data.get("photo_url")
     team_code = data.get("team_code")
 
     if client_id and client_name:
         set_cookie(client_id)
-        await save_user(client_id, client_name)
+        await save_user(client_id, client_name, photo_url)
 
         if team_code:
             await set_member(client_id, team_code)

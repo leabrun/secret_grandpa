@@ -30,7 +30,12 @@
     {% endif %}
 
     {% for member in members %}
-    <div class="team-item">
+    <div class="team-item" style="padding: 13px;">
+        {% if member.photo %}
+            <img src="{{ member.photo }}" alt="photo">
+        {% else %} 
+            <img src="/static/images/avatar.png" alt="photo">
+        {% endif %}
         <div class="team-name">{{ member.name }}</div>
 
         {% if member.id == team.owner_id %}

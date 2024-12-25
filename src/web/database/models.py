@@ -14,6 +14,7 @@ class Users(Base):
 
     id = Column(BigInteger, primary_key=True)
     name = Column(String, nullable=False)
+    photo = Column(String(255), default=None)
 
 
 class Teams(Base):

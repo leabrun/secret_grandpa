@@ -15,11 +15,22 @@ async def select_user_by_id(id: int):
         return user_q.first()
 
 
-async def insert_user(id: int, name: str):
+async def insert_user(id: int, name: str, photo: Optional[str]):
     async with AsyncSessionLocal() as asl:
         new_user = Users(id=id,
-                         name=name)
+                         name=name,
+                         photo=photo)
         asl.add(new_user)
+        await asl.commit()
+
+
+async def update_user(id: int, name: str, photo: Optional[str]):
+    photo = f"'{photo}'" if photo else "NULL"
+
+    async with AsyncSessionLocal() as asl:
+        await asl.execute(text("UPDATE users "
+                               f"SET name='{name}', photo={photo} "
+                               f"WHERE id={id}"))
         await asl.commit()
 
 
@@ -81,7 +92,8 @@ async def insert_member(user_id: int, team_id: int):
 
 async def select_members_by_team_id(id: int):
     async with AsyncSessionLocal() as asl:
-        members_q = await asl.execute(text("SELECT users.id, users.name "
+        members_q = await asl.execute(text("SELECT users.id, users.name, "
+                                           "users.photo "
                                            "FROM users "
                                            "INNER JOIN members "
                                            "ON users.id = members.user_id "

@@ -17,13 +17,14 @@
         let tg_user = tg_data.user;
         const user_id = tg_user.id;
         const user_name = tg_user.first_name;
+        const photo_url = tg_user.photo_url;
         const team_code = tg_data.start_param;
 
         setTimeout(() => {
             fetch("/set/user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ user_id, user_name, team_code }),
+                body: JSON.stringify({ user_id, user_name, photo_url, team_code }),
             }).then(() => {
                 window.location.href = "/home";
             });
