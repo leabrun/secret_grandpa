@@ -17,6 +17,7 @@
 
 .teams-header .heading {
     font-size: 20px;
+    width: 70%;
     overflow-wrap: anywhere;
 }
 
