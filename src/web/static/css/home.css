@@ -50,6 +50,7 @@
 .team-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #ffffff;
     border: none;
     border-radius: 10px;

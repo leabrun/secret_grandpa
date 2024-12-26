@@ -24,10 +24,6 @@ async def create_wish_request(request: Request,
                               wish_title: str = Form(...),
                               wish_url: str = Form(...)):
     client_id = get_id_from_cookie(request)
-
-    if wish_url and not wish_url.startswith("https://"):
-        wish_url = "https://"+wish_url
-
     await insert_wish(wish_title, wish_url, client_id)
 
     return RedirectResponse(f"/user/{client_id}", status_code=303)

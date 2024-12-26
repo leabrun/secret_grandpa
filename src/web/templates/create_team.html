@@ -10,7 +10,7 @@
 <div class="form-container">
     <div class="heading">CREATE A TEAM</div>
     <form action="/create/team" method="POST">
-        <input type="text" name="team_title" placeholder="Title here" required>
+        <input type="text" name="team_title" maxlength="30" placeholder="Title here" required>
         <div class="button-container">
             <a href="/home" class="cancel-button">CANCEL</a>
             <button type="submit" class="create-button">CREATE</button>

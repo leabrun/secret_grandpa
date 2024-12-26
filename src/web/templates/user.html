@@ -36,14 +36,14 @@
         {% else %}
             {% if wish.is_selected %}
                 {% if wish.selector_id == client_id %}
-                    <a href="/select/wish/{{ wish.id }}" class="selected-button">your choice</a>
+                    <a href="/select/wish/{{ wish.id }}" class="selected-button">✔️</a>
 
                 {% else%}
-                    <a href="" class="del-button">was selected</a>
+                    <a href="" class="del-button">✖️</a>
                 {% endif %}
 
             {% else %}
-                <a href="/select/wish/{{ wish.id }}" class="new-button">wanna give</a>
+                <a href="/select/wish/{{ wish.id }}" class="new-button">➕</a>
             {% endif %}
         {% endif %}
     </div>

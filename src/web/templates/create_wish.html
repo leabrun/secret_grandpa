@@ -10,8 +10,8 @@
 <div class="form-container">
     <div class="heading">ADD A NEW WISH</div>
     <form action="/create/wish" method="POST">
-        <input type="text" name="wish_title" placeholder="Title here" required>
-        <input type="text" name="wish_url" placeholder="URL (optional)">
+        <input type="text" name="wish_title" maxlength="100" placeholder="Title here" required>
+        <input type="url" name="wish_url" placeholder="URL (optional)">
         <div class="button-container">
             <a href="/user/{{ user_id }}" class="cancel-button">CANCEL</a>
             <button type="submit" class="create-button">ADD</button>
